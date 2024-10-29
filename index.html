@@ -1,18 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hadziq Fruit Ninja</title>
-    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Duck Hunt with Tele-guided Missile in A-Frame</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <style>
+    #scoreboard {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      color: black;
+      font-size: 24px;
+    }
+    #gameOver {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: black;
+      font-size: 32px;
+      display: none;
+    }
+  </style>
 </head>
 <body>
-    <a-scene>
-        <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D2"></a-box>
-        <a-sphere position="1 1 -3" radius="1.25" color="#EF2D5E"></a-sphere>
-        <a-cylinder position="0 0 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
-        <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
+  <div id="scoreboard">Score: 0</div>
+  <div id="gameOver">Game Over! Final Score: <span id="finalScore"></span></div>
+
+  <a-scene cursor="rayOrigin: mouse">
+    <a-camera position="0 1.6 0" look-controls>
+      <a-cursor color="red"></a-cursor>
+    </a-camera>
+    <a-plane rotation="-90 0 0" width="20" height="20" color="#7BC8A4"></a-plane>
+  </a-scene>
+  
+  <script>
+    let score = 0;
+    const gameDuration = 30; // Game duration in seconds
+    let gameInterval;
+    let missileOrigin;
+    let missileActive = false; // Track if a missile is active
+
+    document.querySelector('a-scene').addEventListener('loaded', () => {
+      const scoreboard = document.querySelector('#scoreboard');
+      const gameOverScreen = document.querySelector('#gameOver');
+      const finalScore = document.querySelector('#finalScore');
+      const missileSpeed = 0.1;
+      const missileSize = 0.1;
+      const enemyCount = 5; // Number of blue enemies
+      const blueEnemies = []; // Array to hold blue enemies
+
+      // Create a blue enemy
+      function createBlueEnemy(position) {
+        const blueEnemy = document.createElement('a-entity');
+        blueEnemy.setAttribute('geometry', 'primitive: box');
+        blueEnemy.setAttribute('material', 'color: blue');
+        blueEnemy.setAttribute('position', position);
+        document.querySelector('a-scene').appendChild(blueEnemy);
+        return blueEnemy;
+      }
+
+      function getRandomVerticalPosition() {
+        return 1 + Math.random() * 2;
+      }
+
+      // Reset individual blue enemy's position
+      function resetBlueEnemy(enemy) {
+        const x = -10; // Start position for blue enemies
+        const y = getRandomVerticalPosition();
+        const z = Math.random() * -8 - 2; // Random z position for variety
+        enemy.setAttribute('position', { x, y, z });
+      }
+
+      // Launch missile towards the closest blue enemy
+      function launchMissile() {
+        if (!missileOrigin || missileActive) return;
+
+        let closestEnemy = null;
+        let closestDistance = Infinity;
+
+        blueEnemies.forEach(enemy => {
+          const enemyPos = enemy.getAttribute('position');
+          const missileOriginPos = missileOrigin.object3D.position;
+          const distance = Math.sqrt(
+            (enemyPos.x - missileOriginPos.x) ** 2 +
+            (enemyPos.y - missileOriginPos.y) ** 2 +
+            (enemyPos.z - missileOriginPos.z) ** 2
+          );
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestEnemy = enemy;
+          }
+        });
+
+        if (closestEnemy) {
+          const missile = document.createElement('a-entity');
+          missile.setAttribute('geometry', `primitive: box; height: ${missileSize}; width: ${missileSize}; depth: ${missileSize}`);
+          missile.setAttribute('material', 'color: yellow');
+          const missileOriginPos = missileOrigin.object3D.position;
+          missile.object3D.position.set(missileOriginPos.x, missileOriginPos.y, missileOriginPos.z);
+          document.querySelector('a-scene').appendChild(missile);
+          missileActive = true;
+
+          function animateMissile() {
+            const missilePos = missile.getAttribute('position');
+            const enemyPos = closestEnemy.getAttribute('position');
+
+            const directionX = enemyPos.x - missilePos.x;
+            const directionY = enemyPos.y - missilePos.y;
+            const directionZ = enemyPos.z - missilePos.z;
+            const distance = Math.sqrt(directionX ** 2 + directionY ** 2 + directionZ ** 2);
+
+            missilePos.x += (directionX / distance) * missileSpeed;
+            missilePos.y += (directionY / distance) * missileSpeed;
+            missilePos.z += (directionZ / distance) * missileSpeed;
+            missile.setAttribute('position', missilePos);
+
+            if (distance < 0.5) {
+              missile.remove();
+              score++;
+              scoreboard.innerText = `Score: ${score}`;
+              resetBlueEnemy(closestEnemy); // Reset position for the hit enemy only
+              missileActive = false; // Missile is no longer active
+            } else {
+              requestAnimationFrame(animateMissile);
+            }
+          }
+          animateMissile();
+        }
+      }
+
+      // Initialize blue enemies
+      for (let i = 0; i < enemyCount; i++) {
+        const blueEnemyPosition = { x: -10 + i * 4, y: getRandomVerticalPosition(), z: -5 };
+        const blueEnemy = createBlueEnemy(blueEnemyPosition);
+        blueEnemies.push(blueEnemy);
+      }
+
+      // Set up the green enemy
+      const greenEnemy = document.createElement('a-entity');
+      greenEnemy.setAttribute('geometry', 'primitive: box');
+      greenEnemy.setAttribute('material', 'color: green');
+      greenEnemy.setAttribute('position', { x: 5, y: getRandomVerticalPosition(), z: -3 });
+      document.querySelector('a-scene').appendChild(greenEnemy);
+
+      greenEnemy.addEventListener('click', () => {
+        if (!missileOrigin) {
+          missileOrigin = document.createElement('a-entity');
+          missileOrigin.setAttribute('geometry', 'primitive: box; height: 1; width: 1; depth: 1');
+          missileOrigin.setAttribute('material', 'color: red');
+          missileOrigin.setAttribute('position', { x: 10, y: 5, z: -5 });
+          document.querySelector('a-scene').appendChild(missileOrigin);
+        }
+        greenEnemy.remove(); // Remove the green enemy on hit
+      });
+
+      // Start the game timer
+      function startGame() {
+        gameInterval = setInterval(() => {
+          // Randomly reset a blue enemy every 2 seconds
+          const randomIndex = Math.floor(Math.random() * blueEnemies.length);
+          resetBlueEnemy(blueEnemies[randomIndex]); 
+        }, 2000);
+
+        setTimeout(endGame, gameDuration * 1000);
+      }
+
+      function endGame() {
+        clearInterval(gameInterval);
+        gameOverScreen.style.display = 'block';
+        finalScore.innerText = score;
+      }
+
+      startGame();
+
+      // Launch missiles at intervals
+      setInterval(launchMissile, 2000);
+      setInterval(() => {
+        blueEnemies.forEach(enemy => {
+          let position = enemy.getAttribute('position');
+          position.x += 0.05; // Move speed
+          enemy.setAttribute('position', position);
+
+          if (position.x > 10) {
+            resetBlueEnemy(enemy); // Reset only the enemy that moves out of bounds
+          }
+        });
+      }, 16);
+    });
+  </script>
 </body>
 </html>
