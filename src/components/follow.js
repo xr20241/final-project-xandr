@@ -8,7 +8,7 @@ AFRAME.registerComponent('follow', {
         this.directionVec3 = new THREE.Vector3();
         this.gameManager = document.querySelector('#game-manager');
         this.nearTriggered = false
-        
+
         this.el.addEventListener('player-dead', () => this.pause() );
         this.stepUp = this.el.object3D.position.y + 0.3
     },
@@ -49,8 +49,8 @@ AFRAME.registerComponent('follow', {
             directionVec3[axis] *= factor * (timeDelta / 1000);
         });
         this.el.object3D.position.set(
-            currentPosition.x + directionVec3.x, 
-            currentPosition.y + directionVec3.y, 
+            currentPosition.x + directionVec3.x,
+            currentPosition.y + directionVec3.y,
             currentPosition.z + directionVec3.z
         );
     },

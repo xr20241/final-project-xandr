@@ -21,7 +21,7 @@ AFRAME.registerComponent('weapon-2', {
 
     tick: function (time, timeDelta) {
         let playerPosition = this.data.player.object3D.getWorldPosition(this.worldPosition)
-        let currentPosition = { 
+        let currentPosition = {
             x: this.el.object3D.position.x,
             y: playerPosition.y,
             z: this.el.object3D.position.z

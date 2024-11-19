@@ -46,8 +46,8 @@ AFRAME.registerComponent('weapon-shoot', {
             this.el.destroy()
         }
         // Transalte towards the player
-        this.el.object3D.position.x += this.directionVec3.x, 
-        this.el.object3D.position.y += this.directionVec3.y, 
+        this.el.object3D.position.x += this.directionVec3.x,
+        this.el.object3D.position.y += this.directionVec3.y,
         this.el.object3D.position.z += this.directionVec3.z
     },
 

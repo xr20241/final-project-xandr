@@ -20,14 +20,14 @@ AFRAME.registerComponent('enemy', {
         // hit & die listeners
         this.el.addEventListener('hit', () => this.hitted(this.el) );
         this.el.addEventListener('die', () => this.died(this.el) );
-        
+
     },
 
     update: function () {
     },
 
     remove: function () {
-        
+
     },
 
     tick: function (time, timeDelta) {

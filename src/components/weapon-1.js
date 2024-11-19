@@ -7,7 +7,7 @@ AFRAME.registerComponent('weapon-1', {
         this.duck = document.getElementById('boss-duck')
         this.player = document.getElementById('rig')
         this.playerPosition
-        
+
         this.el.addEventListener('animationcomplete', () => {
             this.duck.emit('weapon1ready')
         });

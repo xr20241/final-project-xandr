@@ -56,10 +56,10 @@ AFRAME.registerComponent('hexatile', {
     this.el.addEventListener('blink', function() {
         let goRed = () => {this.data.color = this.data.blinkColor; this.changeColor(); this.el.querySelector('[mixin=spike]').emit('alarm-sound')}
         let goGreen = () => {this.data.color = this.clearColor; this.changeColor()}
-        
+
         this.el.removeEventListener('raycaster-intersected', this.handl_raycast_inter);
         this.el.removeEventListener('raycaster-intersected-cleared', this.handl_raycast_inter_clear);
-        
+
         goRed()
         setTimeout(goGreen, 350);
         setTimeout(goRed, 700);

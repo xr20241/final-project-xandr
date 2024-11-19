@@ -12,7 +12,7 @@ AFRAME.registerComponent('hardware-manager', {
 
         if (this.el.sceneEl.is('vr-mode')) this.enterVR()
         else this.exitVR()
-        
+
         window.addEventListener('enter-vr', () => this.enterVR());
         window.addEventListener('exit-vr', () => this.exitVR());
     },

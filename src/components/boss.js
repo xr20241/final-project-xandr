@@ -1,7 +1,7 @@
-/* 
+/*
 -12 2 -20   30
 -12 2 20    150
-22 2 0      270 
+22 2 0      270
 */
 
 AFRAME.registerComponent('boss', {
@@ -29,7 +29,7 @@ AFRAME.registerComponent('boss', {
         this.handl_phase3transition = () => this.phase3transition()
         this.handl_hitted = () => this.hitted(this.el)
         this.handl_died = () => this.died(this.el)
-        
+
         this.el.addEventListener('appear', this.attack);
         this.el.addEventListener('hit', this.handl_hitted);
         this.el.addEventListener('phase2transition', this.handl_phase2transition);
@@ -109,7 +109,7 @@ AFRAME.registerComponent('boss', {
         // 1.4sec spikes
         // 2.2sec before weapon2trigger
         // total: 7.8 sec
-        
+
         this.timeoutW2 = setTimeout(() => {
             this.weapon2trigger()
         }, 7800);
@@ -146,7 +146,7 @@ AFRAME.registerComponent('boss', {
             this.weapon1trigger()
         }, 1500);
     },
-    
+
     attackPhase3: function() {
         setTimeout(() => {
             this.weapon2trigger()
@@ -174,7 +174,7 @@ AFRAME.registerComponent('boss', {
         this.duck.emit('backflip')
         this.duck.emit('boss-hit-sound')
     },
-    
+
     phase3transition: function() {
         this.el.removeEventListener('phase3transition', this.handl_phase3transition);
         // Stop current attack

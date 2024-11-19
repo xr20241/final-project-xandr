@@ -28,13 +28,13 @@ AFRAME.registerComponent('game-manager', {
             this.lifeDown()
         });
         this.el.addEventListener('die', () => {
-            this.duckDied() 
+            this.duckDied()
         });
         this.el.addEventListener('boss-died', () => {
-            this.bossDead() 
+            this.bossDead()
         });
         this.el.addEventListener('shoot', this.handl_shoot);
-        
+
     },
 
     update: function () {
