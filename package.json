@@ -1,5 +1,20 @@
 {
+  "name": "VR",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "preview": "live-server dist/",
+    "build": "webpack",
+    "watch": "webpack --mode=development --watch"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "webpack": "^5.24.2",
+    "webpack-cli": "^4.5.0"
+  },
   "dependencies": {
-    "http-server": "^14.1.1"
+    "aframe-look-at-component": "^1.0.0"
   }
 }
