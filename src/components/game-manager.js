@@ -6,7 +6,6 @@ AFRAME.registerComponent('game-manager', {
         this.scoreEls = document.querySelectorAll('.score');
         this.lifeEls = document.querySelectorAll('.life');
         this.navmeshStage = document.querySelector('#nav-mesh-stage')
-        this.navmeshBoss = document.querySelector('#nav-mesh-boss')
         this.lifeMax = 10
         this.life = 10
         this.score = 0
@@ -29,9 +28,6 @@ AFRAME.registerComponent('game-manager', {
         });
         this.el.addEventListener('die', () => {
             this.duckDied()
-        });
-        this.el.addEventListener('boss-died', () => {
-            this.bossDead()
         });
         this.el.addEventListener('shoot', this.handl_shoot);
 
@@ -58,63 +54,19 @@ AFRAME.registerComponent('game-manager', {
         this.updateScoreEl()
     },
 
-    bossDead: function() {
-        this.el.components.sound__boss.stopSound()
-        this.gameEnded = true
-        this.endGame()
-        setTimeout(() => {
-            let finalScore = Math.ceil(( this.life * this.score ) / (this.totalTime/1000))
-            let finalScoreDetails = `(life: ${this.life} * score: ${this.score} / time: ${Math.ceil(this.totalTime/1000)})`
-            // document.getElementById('title').setAttribute('text', {value: 'You Won!'})
-            // document.getElementById('final-score-detail').setAttribute('text', {value: finalScoreDetails})
-            // document.getElementById('final-score').setAttribute('text', {value: `Final score: ${finalScore} points`})
-            // document.getElementById('end-panel').setAttribute('color', '#5ebd4d')
-            // document.getElementById('end-panel').setAttribute('visible', true)
-            location.reload();
-        }, 3000);
-    },
-
     endGame: function() {
-        document.querySelectorAll('[enemy]').forEach(function(el) {
-            el.remove();
-        });
-        document.querySelectorAll('[click-to-shoot]').forEach(function(el) {
-            el.remove();
-        });
-        document.querySelector('[enemy-spawner]').remove();
-        setTimeout(() => {
-            document.querySelector('[boss]').pause();
-        }, 2000);
+        window.location.href = "/index.html"
     },
 
     bossStageAppear: function() {
-        this.el.removeEventListener('shoot', this.handl_shoot);
-        this.el.emit('bossStage')
-        this.el.components.sound__stage1.stopSound()
-        this.el.emit('boom-sound')
-        this.el.emit('ground-rising-sound')
-        setTimeout(() => {
-            this.el.emit('boss-talk-1-sound')
-            this.el.emit('ground-rise')
-        }, 4000)
-        setTimeout(() => {
-            this.activateTeleporter()
-            this.switchNavMesh()
-            this.el.emit('boss-talk-2-sound')
-        }, 12000)
-        setTimeout(() => {
-            this.el.emit('boss-theme-start')
-        }, 8500)
-        setTimeout(() => {
-            this.el.emit('bossEntry')
-        }, 14500);
-
+        window.location.href = "/index.html"
     },
 
     duckDied: function() {
         this.duckDead += 1
         this.score += 50
-        if(this.duckDead == this.duckDeadForBoss) this.bossStageAppear()
+        if(this.duckDead == this.duckDeadForBoss) 
+            this.bossStageAppear()
         this.updateScoreEl()
     },
 
@@ -155,8 +107,6 @@ AFRAME.registerComponent('game-manager', {
     switchNavMesh: function() {
         this.navmeshStage.removeAttribute('nav-mesh');
         this.navmeshStage.setAttribute('nav-mesh-disable', '');
-        this.navmeshBoss.removeAttribute('nav-mesh-disable');
-        this.navmeshBoss.setAttribute('nav-mesh', '');
     },
 
     playTheme1: function() {

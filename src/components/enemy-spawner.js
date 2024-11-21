@@ -9,7 +9,7 @@ AFRAME.registerComponent('enemy-spawner', {
 
         this.throttledFunction = AFRAME.utils.throttle(this.enemySpawner, 1200, this);
         this.i = 1
-        this.el.addEventListener('bossStage', () => {this.pause()})
+        // this.el.addEventListener('bossStage', () => {this.pause()})
     },
 
     update: function () {

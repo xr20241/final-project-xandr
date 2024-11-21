@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dark Blue and Black Animation</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(-45deg, #000000, #1a1a40, #0d0d3d, #000000);
+            background-size: 400% 400%;
+            animation: gradientAnimation 10s infinite;
+        }
+
+        @keyframes gradientAnimation {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        h1 {
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            gap: 10px;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .marvel {
+            background-color: #e62429;
+        }
+
+        .star-wars {
+            background-color: #000000;
+            color: yellow;
+        }
+
+        .jurassic-park {
+            background-color: #006400;
+        }
+
+        .button:hover {
+            transform: scale(1.1);
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Choose Your Universe</h1>
+    <div class="button-container">
+        <a href="marvel.html" class="button marvel">Marvel</a>
+        <a href="star-wars.html" class="button star-wars">Star Wars</a>
+        <a href="jurassic-park.html" class="button jurassic-park">Jurassic Park</a>
+    </div>
+</body>
+</html>
