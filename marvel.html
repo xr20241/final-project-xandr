@@ -80,9 +80,9 @@
 
       <!-- templates -->
       <a-entity id="bulletTemplate" bullet="maxTime: 6; poolSize: 40; speed: 8" geometry="primitive: icosahedron; radius: 0.1" material="color: orange"></a-entity>
-        <a-entity class="enemy_1" enemy="y: 0" class="target" target="healthPoints: 1; static: false" gltf-model="./assets/mysterio/mysterio.gltf" scale="1 1 1"
-  animation-mixer="clip: *; loop: true; timeScale: 1"
-  ></a-entity>
+      <a-entity class="enemy_1" enemy="y: 0" class="target" target="healthPoints: 1; static: false" gltf-model="./assets/mysterio/mysterio.gltf" scale="1 1 1"
+        animation-mixer="clip: *; loop: true; timeScale: 1">
+      </a-entity>
       <a-entity class="enemy_2" enemy="y: -2" class="target" target="healthPoints: 1; static: false" geometry="primitive: box" gltf-model="#duck_1" scale="0.18 0.24 0.22"
         listen-to="target: #game-manager; event: bossStage; emit: die"
         sound__quack="src: #quack; on: quack-sound; volume: 1.8"

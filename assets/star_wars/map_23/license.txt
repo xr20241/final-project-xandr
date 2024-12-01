@@ -1,0 +1,11 @@
+Model Information:
+* title:	map 23
+* source:	https://sketchfab.com/3d-models/map-23-30f9bafd55ca412c9ab80778f50bf6ff
+* author:	hugomartinpadillarocha (https://sketchfab.com/hugomartinpadillarocha)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "map 23" (https://sketchfab.com/3d-models/map-23-30f9bafd55ca412c9ab80778f50bf6ff) by hugomartinpadillarocha (https://sketchfab.com/hugomartinpadillarocha) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

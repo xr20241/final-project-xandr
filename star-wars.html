@@ -28,7 +28,7 @@
       animation__near="property: fog.near; to: 40; dur: 4000; easing: linear; startEvents: bossStage"
       animation__far="property: fog.far; to: 50; dur: 4000; easing: linear; startEvents: bossStage"
     > 
-    <a-sky color="#00008B"></a-sky>
+    <!-- <a-sky color="#00008B"></a-sky> -->
       <a-assets>
         <a-mixin id="spike" gltf-model="#spikes" scale="0.18 0.18 0.18" position="0 24 0"
           animation__up="property: object3D.position.y; to: 25; dur: 300; easing: linear; startEvents: spikes-up"
@@ -37,14 +37,14 @@
           sound__down="src: #spikes-sound; on: spikes-down; poolSize: 2; volume: 2"
           sound__alarm="src: #alarm; on: alarm-sound; poolSize: 2">
         </a-mixin>
-        <a-asset-item id="duck_1" src="./assets/mysterio/mysterio.gltf"></a-asset-item>
+        <a-asset-item id="duck_1" src="./assets/star_wars/stormtrooper.gltf"></a-asset-item>
         <a-asset-item id="gun" src="./assets/pistol/pistol.gltf"></a-asset-item>
-        <a-asset-item id="duck_boss" src="./assets/mysterio/mysterio.gltf"></a-asset-item>
-        <a-asset-item id="spikes" src="./assets/helicarrier/scene.gltf"></a-asset-item>
+        <a-asset-item id="duck_boss" src="./assets/star_wars/stormtrooper.gltf"></a-asset-item>
+        <a-asset-item id="spikes" src="./assets/star_wars/map_23/scene.gltf"></a-asset-item>
         <a-asset-item id="navmesh1" src="./assets/navmeshs/navmesh1.gltf"></a-asset-item>
         <a-asset-item id="navmesh2" src="./assets/navmeshs/navmesh2.gltf"></a-asset-item>
         <a-asset-item id="navmesh3" src="./assets/navmeshs/test.gltf"></a-asset-item>
-        <audio id="stage1-theme" src="./assets/audio/avengers.mp3" preload="auto"></audio>
+        <audio id="stage1-theme" src="./assets/audio/star_wars/war-drum-loop-103870.mp3" preload="auto"></audio>
         <audio id="boss-theme" src="./assets/audio/boss-theme.mp3" preload="auto"></audio>
         <audio id="blaster1" src="./assets/audio/gunshot.mp3" preload="auto"></audio>
         <audio id="quack" src="./assets/audio/quack.mp3" preload="auto"></audio>
@@ -80,7 +80,7 @@
 
       <!-- templates -->
       <a-entity id="bulletTemplate" bullet="maxTime: 6; poolSize: 40; speed: 8" geometry="primitive: icosahedron; radius: 0.1" material="color: orange"></a-entity>
-        <a-entity class="enemy_1" enemy="y: 0" class="target" target="healthPoints: 1; static: false" gltf-model="./assets/mysterio/mysterio.gltf" scale="1 1 1"
+        <a-entity class="enemy_1" enemy="y: 0" class="target" target="healthPoints: 1; static: false" gltf-model="./assets/star_wars/stormtrooper.gltf" scale="1 1 1"
   animation-mixer="clip: *; loop: true; timeScale: 1"
   ></a-entity>
       <a-entity class="enemy_2" enemy="y: -2" class="target" target="healthPoints: 1; static: false" geometry="primitive: box" gltf-model="#duck_1" scale="0.18 0.24 0.22"
@@ -122,8 +122,8 @@
       </a-entity>
 
       <a-entity
-      gltf-model="./assets/helicarrier/scene.gltf"
-      position="0 -30 0"
+      gltf-model="./assets/star_wars/map_23/scene.gltf"
+      position="0 -2 0"
       scale="0.5 0.5 0.5"
       >
 
@@ -201,7 +201,7 @@
           >
             <a-entity class="life" geometry="primitive: plane; height: 0.09; width: 0.025" material="color: green" rotation="0 0 0" position="0 0.065 0.04" scale="1 1 1"></a-entity> <!-- 0.05 0.1 -->
             <a-entity class="score" text="value: 0; align: left; color: purple" position="-0.045 0.052 0.79" rotation=" 0 0 0"></a-entity>
-            <a-entity gltf-model="#gun" scale="0.03 0.03 0.03" position=" 0 0.06 0"></a-entity>
+            <a-entity gltf-model="#gun" scale="0.03 0.03 0.03" position="0 0.06 0"></a-entity>
           </a-entity>
         </a-entity>
       </a-entity>
