@@ -46,11 +46,11 @@
         <a-asset-item id="navmesh3" src="./assets/navmeshs/test.gltf"></a-asset-item>
         <audio id="stage1-theme" src="./assets/audio/star_wars/war-drum-loop-103870.mp3" preload="auto"></audio>
         <audio id="boss-theme" src="./assets/audio/boss-theme.mp3" preload="auto"></audio>
-        <audio id="blaster1" src="./assets/audio/gunshot.mp3" preload="auto"></audio>
+        <audio id="blaster1" src="./assets/audio/star_wars/blaster1.mp3" preload="auto"></audio>
         <audio id="quack" src="./assets/audio/quack.mp3" preload="auto"></audio>
-        <audio id="nearenemy" src="./assets/audio/near-enemy.mp3" preload="auto"></audio>
+        <audio id="nearenemy" src="./assets/audio/star_wars/Stormtroopers_on_the_move.mp3" preload="auto"></audio>
         <audio id="bite" src="./assets/audio/bite.mp3" preload="auto"></audio>
-        <audio id="player-hit" src="./assets/audio/player-hit.mp3" preload="auto"></audio>
+        <audio id="player-hit" src="./assets/audio/star_wars/Yoda_Death_Scream.mp3" preload="auto"></audio>
         <audio id="player-dead" src="./assets/audio/player-dead.mp3" preload="auto"></audio>
         <audio id="boom" src="./assets/audio/boom.mp3" preload="auto"></audio>
         <audio id="boss-talk-1" src="./assets/audio/boss-talk-1.mp3" preload="auto"></audio>
@@ -61,7 +61,7 @@
         <audio id="spikes-sound" src="./assets/audio/spikes.mp3" preload="auto"></audio>
         <audio id="boss-hit" src="./assets/audio/boss-hit.mp3" preload="auto"></audio>
         <audio id="alarm" src="./assets/audio/alarm.mp3" preload="auto"></audio>
-        <audio id="scream" src="./assets/audio/scream.mp3" preload="auto"></audio>
+        <audio id="scream" src="./assets/audio/star_wars/Stormtroopers_on_the_move.mp3" preload="auto"></audio>
       </a-assets>
       
       <a-entity id="game-manager" game-manager
@@ -79,7 +79,7 @@
       <a-entity enemy-spawner listen-to="target: #game-manager; event: bossStage; emit: bossStage"></a-entity>
 
       <!-- templates -->
-      <a-entity id="bulletTemplate" bullet="maxTime: 6; poolSize: 40; speed: 8" geometry="primitive: icosahedron; radius: 0.1" material="color: orange"></a-entity>
+      <a-entity id="bulletTemplate" bullet="maxTime: 6; poolSize: 40; speed: 8" geometry="primitive: cylinder; radius: 0.03; height: 1" material="color: red; opacity: 0.8" rotation="90 0 0"></a-entity>
         <a-entity class="enemy_1" enemy="y: 0" class="target" target="healthPoints: 1; static: false" gltf-model="./assets/star_wars/stormtrooper.gltf" scale="1 1 1"
   animation-mixer="clip: *; loop: true; timeScale: 1"
   ></a-entity>

@@ -22,12 +22,12 @@
      <script src="./src/components/weapon-shoot.js"></script>
   </head>
   <body>
-    <a-scene  
-    fog="type: linear; color: #a3d0ed; near: 20; far: 30"
+    <a-scene
+      fog="type: linear; color: #a3d0ed; near: 20; far: 30"
       listen-to="target: #game-manager; event: bossStage; emit: bossStage"
       animation__near="property: fog.near; to: 40; dur: 4000; easing: linear; startEvents: bossStage"
       animation__far="property: fog.far; to: 50; dur: 4000; easing: linear; startEvents: bossStage"
-    > 
+    >
     <a-sky color="#00008B"></a-sky>
       <a-assets>
         <a-mixin id="spike" gltf-model="#spikes" scale="0.18 0.18 0.18" position="0 24 0"
