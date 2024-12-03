@@ -22,12 +22,12 @@
      <script src="./src/components/weapon-shoot.js"></script>
   </head>
   <body>
-    <a-scene  
-    fog="type: linear; color: #a3d0ed; near: 20; far: 30"
+    <a-scene
+      fog="type: linear; color: #a3d0ed; near: 20; far: 30"
       listen-to="target: #game-manager; event: bossStage; emit: bossStage"
       animation__near="property: fog.near; to: 40; dur: 4000; easing: linear; startEvents: bossStage"
       animation__far="property: fog.far; to: 50; dur: 4000; easing: linear; startEvents: bossStage"
-    > 
+    >
     <!-- <a-sky color="#00008B"></a-sky> -->
       <a-assets>
         <a-mixin id="spike" gltf-model="#spikes" scale="0.18 0.18 0.18" position="0 24 0"
@@ -63,7 +63,7 @@
         <audio id="alarm" src="./assets/audio/alarm.mp3" preload="auto"></audio>
         <audio id="scream" src="./assets/audio/star_wars/Stormtroopers_on_the_move.mp3" preload="auto"></audio>
       </a-assets>
-      
+
       <a-entity id="game-manager" game-manager
         listen-to__died="target: #boss; event: died; emit: boss-died"
         listen-to__shoot="target: #right-hand; event: shoot; emit: shoot"
@@ -132,7 +132,7 @@
       <a-entity nav-mesh-disable id="nav-mesh-boss" position="0 0.5 0" gltf-model="#navmesh3" visible="false"></a-entity>
 
       <!-- player -->
-      <a-entity id="rig" 
+      <a-entity id="rig"
         position="0 0 0">
         <a-entity id="camera" camera look-controls="pointerLockEnabled: true" position="0 1.7 0">
           <a-entity
@@ -205,7 +205,7 @@
           </a-entity>
         </a-entity>
       </a-entity>
-      
+
     </a-scene>
     <script>
     </script>

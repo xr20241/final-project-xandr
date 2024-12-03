@@ -65,7 +65,7 @@ AFRAME.registerComponent('game-manager', {
     duckDied: function() {
         this.duckDead += 1
         this.score += 50
-        if(this.duckDead == this.duckDeadForBoss) 
+        if(this.duckDead == this.duckDeadForBoss)
             this.bossStageAppear()
         this.updateScoreEl()
     },
