@@ -9,5 +9,5 @@ FROM "$IMG"
 WORKDIR /app/
 COPY --from=build /app/node_modules/ node_modules/
 COPY src/ src/
-COPY dist/ dist/
+COPY assets/ assets/
 CMD ["npx", "http-server", "-a0"]
